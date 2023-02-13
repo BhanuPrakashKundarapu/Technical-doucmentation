@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript||OOPS</title>
+    <link rel="stylesheet" href="../CSS/index.css">
+</head>
+<body>
+    <div class="header">
+        <img src="../images/1024px-JavaScript-logo.png" alt="JS_LOGO" >
+        <h1>JavaScript</h1>
+    </div>
+    <div class="section">
+        <div class="main">
+            <div class="col_1">
+                <!-- <h1> Object Oriented Programming </h1> -->
+                <Button class="btn"> <a href="#intro">  JavaScript            </a></Button>
+                <Button class="btn"> <a href="#oops">  OOPS                  </a></Button>
+                <Button class="btn"> <a href="#C_I">  Classes And Instance  </a></Button>
+                <Button class="btn"> <a href="#Encapsulation">  Encapsulation         </a></Button>  
+                <Button class="btn"> <a href="#Abstraction">  Abstraction           </a></Button>
+                <Button class="btn"> <a href="#Inheritance">  Inheritance           </a></Button>
+                <Button class="btn"> <a href="#Polymorphism">  Polymorphism          </a></Button>
+                <Button class="btn"> <a href="#Association">  Association           </a></Button>
+
+            </div>
+                <div class="col_2">
+                    <div class="doc">
+                        <div class="Js_head">
+                           
+                           <h1>Object Oriented Programming </h1>
+                        </div>
+                        <div id="intro">
+                            <h2>JavaScript / ECMAScript</h2>
+                            <p><strong>JavaScript</strong> was invented by Brendan Eich in 1995.</p>
+                            <p>It was developed for <b>Netscape 2</b>, and became the <b>ECMA-262</b>  standard in 1997.</p>
+                            <p>After Netscape handed JavaScript over to ECMA, the Mozilla foundation continued to develop JavaScript for the Firefox browser. Mozilla's latest version was 1.8.5. (Identical to ES5).</p>
+                        </div>
+                        <br>
+
+
+                        <!-- ooops -->
+                        <div id="oops">
+
+                            <h2>Object-oriented programming</h2>
+                            <center>
+                                <img src="../images/1_XFVtjH6kCb1K0sSfSjjCng.webp" alt="">
+                            </center>
+                            <p>Object Oriented Programming is a commonly used software design pattern and is a very popular paradigm of programming. It’s used to structure code in such a way that code is reusable, easily readable, and scalable. It involves the use of classes and objects and almost all programming languages support this pattern.</p>
+                            <p>In JavaScript, functions are objects. So we can achieve OOP pattern without the use of classes.</p>
+                            <p>Let’s learn the basics of OOP and implement it using JavaScript.</p>
+                        </div>
+
+
+
+                        <br>
+
+                        <!-- claaass and instence -->
+                        <div id="C_I">
+                            <h2>Classes and Objects:</h2>
+                            <p>A class is a blueprint with which objects/variables are created. It is a custom data type containing properties and methods. An object is an instance of a class that uses the class’s methods and properties. Let’s understand and implement this via javascript:</p>
+                            <pre>
+    class Animal{
+        constructor(name){
+            this.name = name;
+        }
+    }
+    // Let's create Object from the class Animal
+    var animal = new Animal("Dog");
+                            </pre>
+                            <p>A <b>constructor</b>  is a special keyword reserved to create a constructor function. A constructor function is always called automatically upon the creation of an object/instance of a class. It implicitly returns an instance of the newly created object. A default constructor is built-in to the class and we override it by implementing our own. The new keyword is necessary to use with object creation as it will tell the compiler to invoke the constructor function.</p>
+                            <p>In Javascript, we can create Objects using functions without the use of the class keyword.</p>
+                            <pre>
+    function Animal(name){
+        this.name = name;
+    }
+    var animal = new Animal("Dog");
+                            </pre>
+                            <p>This is how we create Objects from functions and classes in javascript. Now that we know classes and objects, let’s learn some more OOP concepts.</p>
+                        </div>
+
+                        <br>
+
+                        <!-- Encapsulation: -->
+                        <div id="Encapsulation">
+                            <h2>Encapsulation:</h2>
+                            <p>Encapsulation is the process of hiding and securing the properties of objects. Direct access to encapsulated properties is not possible and we have to provide other mechanisms to operate/read that data. Typically, this is done by making class variable properties private and providing public class methods to access necessary data.</p>
+                            <pre>
+    function Animal(val){
+        var name = val;
+        var publicApi = {
+            setName: function (val){
+                name = val;
+            },
+            getName: function (){
+                return name;
+            }
+        }
+
+        return publicApi;
+    }
+    var animal = new Animal("DOG");
+    animal.setName("CAT");
+    console.log(animal.getName());   output: CAT
+    console.log(animal.name);        output: undefined
+                            </pre>
+                            <p>
+                                In the above code, the name property of Animal isn’t directly accessible but only via publicApi methods. This is because we are returning publicApi object that doesn’t have a name property. Its properties(setName and getName) utilize name property from its lexical scope.
+                            </p>
+                            <p>Via class, this can be done by making class variables private using # before the name of the variable.</p>
+                            <pre>
+    class Animal{
+        #name;
+        constructor(name){
+            this.#name = name;
+        }
+
+        setName(val){
+            this.#name = val;
+        }
+
+        getName(){
+            return this.#name;
+        }
+    }
+    var animal = new Animal("DOG");
+    animal.setName("CAT");
+    console.log(animal.getName());    output: CAT
+    console.log(animal.name);         output: undefined
+                            </pre>
+                            <details>Encapsulation can also be done by making modules out of code</details>
+                        </div>
+                        <br>
+                        
+                        <div id="Abstraction">
+                            <h2>Abstraction:</h2>
+                            <p>Abstraction means hiding the implementation details and showing only behavior. It’s done on the design level as opposed to encapsulation which is implemented at the application level. With abstraction, only essential details are shown to the user.</p>
+                            <p>Consider this code snippet:</p>
+                            <pre>
+    class Employee{
+        #name;
+        #baseSalary;
+
+
+        setName(val){
+            this.#name = val;
+        }
+        setBaseSalary(val){
+            this.#baseSalary = val;
+        }
+
+        getName(){
+            return this.#name;
+        }
+
+        getSalary(){
+            let bonus = 1000;
+            return this.#baseSalary + bonus;
+        }
+    }
+    var emp = new Employee();
+    emp.setName("abc");
+    emp.setBaseSalary(100);
+    console.log(emp.getName());
+    console.log(emp.getSalary());
+                            </pre>
+                            <p>Notice how <b>getSalary</b>  method is updating salary in the backend that the end user wouldn’t know. In a real application, this bonus can be fetched from some database and added to the base salary.</p>
+                            <p>Via function, this can be done using the following code:</p>
+                            <pre>
+    function Employee(){
+        let name;
+        let baseSalary;
+
+        var publicApi = {};
+
+        publicApi.setName = function (val){
+            name = val;
+        }
+        publicApi.setBaseSalary = function (val){
+            baseSalary = val;
+        }
+
+        publicApi.getName = function (){
+            return name;
+        }
+
+        publicApi.getSalary = function (){
+            let bonus = 1000;
+            return baseSalary + bonus;
+        }
+        return publicApi;
+    }
+    var emp = new Employee();
+    emp.setName("abc");
+    emp.setBaseSalary(100);
+    console.log(emp.getName());
+    console.log(emp.getSalary());
+    console.log(emp.name);
+                            </pre>
+                        </div>
+
+                        
+                            <!-- Inheritance: -->
+                            <div id="Inheritance">
+                                <h2>Inheritance:</h2>
+                                <p>Inheritance is an important concept in Object Oriented Programming paradigm. It’s a process by which child objects inherit the properties of the parent object. In javascript, inheritance is built into objects and every object has a property called prototype which refers to the parent of that object and this chain goes up until the prototype points to null.</p>
+                                <center>
+                                    <img src="../images/1_ynd6bGI7YwpHgIjeA4WBcQ.webp" alt="">
+                                </center>
+                                <p>As you can see above, the Obj has a default prototype property referring to Object which is a built-in data type.</p>
+                                <p>Now let’s implement inheritance via classes and objects:</p>
+                                <pre>
+    class Person{
+        constructor(name){
+            this.name = name;
+        }
+        sayName(){
+            console.log(this.name);
+        }
+    }
+    class Student extends Person{
+        constructor(name, rollNumber){
+            super(name);
+            this.rollNumber = rollNumber;
+        }
+        logDetails(){
+            console.log(`Name: ${this.name}, Roll number: ${this.rollNumber}`)
+        }
+    }
+    var student = new Student("Heisenberg", 1);
+    student.logDetails();    // Name: Heisenberg, Roll number:1
+    student.sayName();       // Heisenberg
+                                </pre>
+                                <p>Student class has access to all properties of the person class.</p>
+                            </div>
+                            <br>
+                            <!--Polymorphism:  -->
+                            <div id="Polymorphism">
+                                <h2>Polymorphism:</h2>
+                                <p>Polymorphism is the practice to design objects in such a way that they share and override behavior from parent objects.</p>
+                                <p>When a property is referred to by an object whether it’s a method or variable, the object first looks for it in its own scope, if not found then go one level above and look for it in the parent scope. It goes on until that property is found or returned undefined otherwise. This behavior of javascript objects can be utilized in such a way that child objects can override the functionality of their parent objects where required without modifying the parent.</p>
+                                <p>In the above code from the inheritance, the student object calls sayName function which is not present in the Student class but in its parent, yet it is callable. We can override this function in the Student class and customize it’s behavior.</p>
+                                <pre>
+    class Person{
+        constructor(name){
+            this.name = name;
+        }
+        sayName(){
+            console.log(this.name);
+        }
+    }
+    class Student extends Person{
+        constructor(name, rollNumber){
+            super(name);
+            this.rollNumber = rollNumber;
+        }
+        logDetails(){
+            console.log(`Name: ${this.name}, Roll number: ${this.rollNumber}`)
+        }
+        sayName(){
+            // do stuff
+            console.log("From Student");
+            super.sayName();
+        }
+    }
+    var student = new Student("Heisenberg", 1);
+    student.logDetails();
+    student.sayName();      // From Student   Heisenberg
+                                </pre>
+                                <p>The <i>super</i>  keyword is used to refer to the parent object and call its method. Here we can do operations specific to students in the <b>Student.sayName</b>  method and then common operations of Student and other children of Person class can be abstracted to <b>Person.sayName</b>  method.</p>
+                            </div>
+                            <br>
+                            <div id="Association">
+                                <h2>Association:</h2>
+                                <p>Association is the design principle by which different Objects can be associated with each other to perform some task. It’s of two types:</p>
+                                <h2>1- Aggregation:</h2>
+                                <p>In Aggregation, objects are loosely coupled and can independently exist. This means an object can exist even after its associated object is destroyed.</p>
+                                <p>Let’s implement this via javascript:</p>
+                                <pre>
+    class Wall{
+        constructor(width, height){
+            this.width= width;
+            this.height = height;
+        }
+    }
+    class Room{
+        constructor(wall){
+            this.wall = wall;
+        }
+        print(){
+            console.log(this.wall);
+        }
+    }
+    var wall = new Wall(1,1);
+    var room = new Room(wall);
+    wall = null;
+    room.print();
+                                </pre>
+                                <p>Here the wall and room object exist independently.</p>
+                                <details>Aggregation is also called weak association.</details>
+                                <br>
+                                <h2>2- Composition:</h2>
+                                <p>In Composition, objects are tightly coupled and cannot exist independently.</p>
+                                <p>Here’s the javascript implementation of composition:</p>
+                                <pre>
+    class Wall{
+        constructor(width, height){
+            this.width= width;
+            this.height = height;
+        }
+    }
+    class Room{
+        constructor(width, height){
+            this.wall = new Wall(width,height);
+        }
+        print(){
+            console.log(this.wall);
+        }
+    }
+    var room = new Room(1,1);
+    room.print();
+    If we destroy the room object, the wall is also destroyed as it’s enclosed inside the room object.
+                                </pre>
+                                <details>
+                                    Composition is also called strong association.
+                                </details>
+                            </div>
+                            <br>
+                            <footer id="footer_1">
+                                <p>OOP has a lot of applications and all modern software are built with design pattern based on OOP architecture. Therefore, one must have a solid understanding of above mentioned OOP concepts to build software applications.</p>
+                            </footer>
+                            <br><br>    
+                            <footer id="footer_2">
+                                <p>&#169;All copyrights reserved to unikaksha 2023-20**</p>
+                            </footer>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
